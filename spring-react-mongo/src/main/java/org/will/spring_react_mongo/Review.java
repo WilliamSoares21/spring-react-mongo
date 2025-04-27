@@ -23,4 +23,8 @@ public class Review {
     this.created = created;
     this.updated = updated;
   }
+
+  public ObjectId getId() {
+    return this.id;
+  }
 }
