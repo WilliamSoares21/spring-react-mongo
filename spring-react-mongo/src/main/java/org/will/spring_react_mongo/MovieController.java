@@ -9,8 +9,10 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000") // Adicione esta anotação
 @RequestMapping("/api/v1/movies")
 public class MovieController {
+
   @Autowired
   private MovieService movieService;
 
