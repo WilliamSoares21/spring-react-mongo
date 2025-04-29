@@ -1,22 +1,22 @@
 package org.will.spring_react_mongo;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
-
 import java.util.List;
 
 @Document(collection = "movies")
-@Data
+@Data // Gera getters, setters, toString, etc.
 @AllArgsConstructor
 @NoArgsConstructor
 public class Movie {
   @Id
-  private ObjectId id;
+  private String id; // Mantido como ObjectId
+
   private String imdbId;
   private String title;
   private String releaseDate;
@@ -28,8 +28,10 @@ public class Movie {
   @DocumentReference
   private List<Review> reviews;
 
-  public Movie(String imdbId, String title, String releaseDate, String trailerLink,
-      String poster, List<String> genres, List<String> backdrops) {
+  // Construtor sem ID (para inserções)
+  public Movie(String imdbId, String title, String releaseDate,
+      String trailerLink, String poster, List<String> genres,
+      List<String> backdrops) {
     this.imdbId = imdbId;
     this.title = title;
     this.releaseDate = releaseDate;

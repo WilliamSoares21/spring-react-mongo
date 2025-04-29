@@ -6,10 +6,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000") // Adicione esta anotação
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/v1/movies")
 public class MovieController {
 
@@ -22,7 +21,9 @@ public class MovieController {
   }
 
   @GetMapping("/{imdbId}")
-  public ResponseEntity<Optional<Movie>> getMovieByImdbId(@PathVariable String imdbId) {
-    return new ResponseEntity<>(movieService.findMovieByImdbId(imdbId), HttpStatus.OK);
+  public ResponseEntity<Movie> getMovieByImdbId(@PathVariable String imdbId) {
+    return movieService.findMovieByImdbId(imdbId)
+        .map(movie -> new ResponseEntity<>(movie, HttpStatus.OK))
+        .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
   }
 }
