@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Layout from './components/Layout';
 import { Routes, Route } from 'react-router-dom';
 import Home from './components/home/Home';
-
+import Header from './components/header/Header'
 
 
 
@@ -50,6 +50,7 @@ function App() {
           </div>
         );
       })}
+      <Header />
 
       <Routes>
         <Route path="/" element={<Layout />}>
